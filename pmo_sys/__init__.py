@@ -1,10 +1,14 @@
-from .config import Config
+from .config import ProdConfig, DevConfig
 from flask import Flask
+import os
 
 
-def create_app(config_class=Config):
+def create_app():
     app = Flask(__name__)
-    app.config.from_object(Config)
+    if os.environ.get("ENV") == "production":
+        app.config.from_object(ProdConfig)
+    else:
+        app.config.from_object(DevConfig)
 
     from .routes import main
 
