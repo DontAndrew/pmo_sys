@@ -10,11 +10,6 @@ body {
   align-items: center;
   padding-top: 40px;
   padding-bottom: 40px;
-  background: linear-gradient(
-    0deg,
-    rgba(122, 126, 214, 0.39),
-    rgba(255, 255, 255, 0.87)
-  );
 }
 
 .form-signin {

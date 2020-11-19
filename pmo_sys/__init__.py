@@ -1,6 +1,11 @@
-from .config import ProdConfig, DevConfig
+from pmo_sys.config import ProdConfig, DevConfig
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 import os
+
+db = SQLAlchemy()
+migrate = Migrate()
 
 
 def create_app():
@@ -9,6 +14,9 @@ def create_app():
         app.config.from_object(ProdConfig)
     else:
         app.config.from_object(DevConfig)
+
+    db.init_app(app)
+    migrate.init_app(app, db)
 
     from .routes import main
 
